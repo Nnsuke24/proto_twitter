@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>688168281180-l12k41m2eruu6mka66b4jaat39437tp7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.688168281180-l12k41m2eruu6mka66b4jaat39437tp7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDQcaYxPyfcqBiDjxJlglO8X1Zaq44VOXw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>688168281180</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kosukefukuda.proto-twitter</string>
+	<key>PROJECT_ID</key>
+	<string>proto-twitter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>proto-twitter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:688168281180:ios:e6c03a4c38cea410</string>
+	<key>DATABASE_URL</key>
+	<string>https://proto-twitter.firebaseio.com</string>
+</dict>
+</plist>
