@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B9AADB421B7653700862D06 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AADB321B7653700862D06 /* SignUpViewController.swift */; };
+		5B9AADB621B7655200862D06 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AADB521B7655200862D06 /* LoginViewController.swift */; };
+		5B9AADB921B766E600862D06 /* SMSAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AADB821B766E600862D06 /* SMSAuthenticationViewController.swift */; };
+		5B9AADBB21B7673400862D06 /* TopPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AADBA21B7673400862D06 /* TopPageViewController.swift */; };
 		93A5260F96C49E2A581C4D3A /* Pods_proto_twitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABF8B5D5969391BC5291373 /* Pods_proto_twitterUITests.framework */; };
 		BD282E3C2B9D428735AD2D59 /* Pods_proto_twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AA3F1A68FD42BA05578DE8 /* Pods_proto_twitter.framework */; };
 		DD1B6CF021AC0330004E6619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B6CEF21AC0330004E6619 /* AppDelegate.swift */; };
@@ -39,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		2ACA5D9052ECEF39BA191298 /* Pods-proto_twitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proto_twitterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-proto_twitterTests/Pods-proto_twitterTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B9AADB321B7653700862D06 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5B9AADB521B7655200862D06 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B9AADB821B766E600862D06 /* SMSAuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSAuthenticationViewController.swift; sourceTree = "<group>"; };
+		5B9AADBA21B7673400862D06 /* TopPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPageViewController.swift; sourceTree = "<group>"; };
 		699C4E2A07632EB3B0E20C99 /* Pods-proto_twitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proto_twitterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-proto_twitterUITests/Pods-proto_twitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		886491CD75AA7ED3CEE07479 /* Pods_proto_twitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proto_twitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ABF8B5D5969391BC5291373 /* Pods_proto_twitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proto_twitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +99,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B9AADB121B7642100862D06 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B6CF121AC0330004E6619 /* ViewController.swift */,
+				5B9AADB321B7653700862D06 /* SignUpViewController.swift */,
+				5B9AADB521B7655200862D06 /* LoginViewController.swift */,
+				5B9AADB821B766E600862D06 /* SMSAuthenticationViewController.swift */,
+				5B9AADBA21B7673400862D06 /* TopPageViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5B9AADB721B7663E00862D06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B6CF321AC0331004E6619 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		774C9D6EEB85A2122C7F0984 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,9 +157,9 @@
 		DD1B6CEE21AC0330004E6619 /* proto_twitter */ = {
 			isa = PBXGroup;
 			children = (
+				5B9AADB721B7663E00862D06 /* Views */,
+				5B9AADB121B7642100862D06 /* ViewControllers */,
 				DD1B6CEF21AC0330004E6619 /* AppDelegate.swift */,
-				DD1B6CF121AC0330004E6619 /* ViewController.swift */,
-				DD1B6CF321AC0331004E6619 /* Main.storyboard */,
 				DD1B6CF621AC0338004E6619 /* Assets.xcassets */,
 				DD1B6CF821AC0338004E6619 /* LaunchScreen.storyboard */,
 				DD1B6CFB21AC0338004E6619 /* Info.plist */,
@@ -305,15 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-proto_twitterUITests-checkManifestLockResult.txt",
 			);
@@ -327,16 +351,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-proto_twitter/Pods-proto_twitter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -351,15 +371,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-proto_twitterTests-checkManifestLockResult.txt",
 			);
@@ -373,15 +389,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-proto_twitter-checkManifestLockResult.txt",
 			);
@@ -397,6 +409,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9AADB621B7655200862D06 /* LoginViewController.swift in Sources */,
+				5B9AADBB21B7673400862D06 /* TopPageViewController.swift in Sources */,
+				5B9AADB921B766E600862D06 /* SMSAuthenticationViewController.swift in Sources */,
+				5B9AADB421B7653700862D06 /* SignUpViewController.swift in Sources */,
 				DD1B6CF221AC0330004E6619 /* ViewController.swift in Sources */,
 				DD1B6CF021AC0330004E6619 /* AppDelegate.swift in Sources */,
 			);
