@@ -80,6 +80,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         tweetCell.nameLabel.text = "テスト"
         tweetCell.tweetLabel.text = "あああああああああああああああああああああああああああああああ"
         
+        
         return tweetCell
     }
     
