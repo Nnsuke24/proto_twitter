@@ -9,11 +9,9 @@
 import UIKit
 
 class TopPageViewController: UIViewController {
-
-    @IBOutlet weak var topPageScrollView: UIScrollView!
     
     let contentViewController = UINavigationController(rootViewController: UIViewController())
-    let profileViewController = ProfileViewController()
+    var profileViewController = ProfileViewController()
     private var isShownSidemenu: Bool {
         return profileViewController.parent == self
     }
@@ -23,11 +21,14 @@ class TopPageViewController: UIViewController {
         title = "トップページ"
 
         contentViewController.viewControllers[0].view.backgroundColor = .white
-        contentViewController.viewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sidemenu", style: .plain, target: self, action: #selector(sidemenuBarButtonTapped(sender:)))
+//        contentViewController.viewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sidemenu", style: .plain, target: self, action: #selector(sidemenuBarButtonTapped(sender:)))
         addChildViewController(contentViewController)
         view.addSubview(contentViewController.view)
         contentViewController.didMove(toParentViewController: self)
         
+        // プロフィールViewControllerの再初期化
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         profileViewController.delegate = self
         profileViewController.startPanGestureRecognizing()
     }
@@ -37,9 +38,9 @@ class TopPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc private func sidemenuBarButtonTapped(sender: Any) {
-        showSidemenu(animated: true)
-    }
+//    @objc private func sidemenuBarButtonTapped(sender: Any) {
+//        showSidemenu(animated: true)
+//    }
     
     private func showSidemenu(contentAvailability: Bool = true, animated: Bool) {
         if isShownSidemenu { return }
