@@ -187,7 +187,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="3yy-DH-Wpp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="3yy-DH-Wpp" customClass="TweetTableViewCell" customModule="proto_twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3yy-DH-Wpp" id="Wwd-h2-kdc">
@@ -200,20 +200,26 @@
                                                         <constraint firstAttribute="width" constant="131" id="FmE-ll-qQ8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="Name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s15-mE-OY2">
-                                                    <rect key="frame" x="148" y="6" width="78" height="31"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-4u-SQg">
+                                                    <rect key="frame" x="234" y="12" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.65444255060000001" green="1" blue="0.67198852809999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="s15-mE-OY2" firstAttribute="centerY" secondItem="Wwd-h2-kdc" secondAttribute="centerY" id="1hc-64-QGT"/>
                                                 <constraint firstItem="JFc-AM-QAV" firstAttribute="top" secondItem="Wwd-h2-kdc" secondAttribute="top" id="URk-cn-fNm"/>
                                                 <constraint firstItem="JFc-AM-QAV" firstAttribute="leading" secondItem="Wwd-h2-kdc" secondAttribute="leading" id="jw1-VX-8tk"/>
                                                 <constraint firstAttribute="bottom" secondItem="JFc-AM-QAV" secondAttribute="bottom" id="mHT-OZ-cSS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="IconImageView" destination="JFc-AM-QAV" id="HWL-NQ-e4V"/>
+                                            <outlet property="iconImageView" destination="JFc-AM-QAV" id="Pgt-61-vDC"/>
+                                            <outlet property="nameLabel" destination="YTr-4u-SQg" id="oCd-H9-Ndi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

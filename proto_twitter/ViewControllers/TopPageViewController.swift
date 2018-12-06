@@ -22,6 +22,8 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         title = "トップページ"
         
         profileViewController.delegate = self
+        timelineTableView.delegate     = self
+        timelineTableView.dataSource   = self
         profileViewController.startPanGestureRecognizing()
     }
 
@@ -57,13 +59,22 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
+    /*
+     * セルの中身を設定する
+     */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "tweetCell")
-        return cell
+        let tweetCell = timelineTableView.dequeueReusableCell(withIdentifier: "tweetCell") as! TweetTableViewCell
+        tweetCell.iconImageView = nil
+        tweetCell.nameLabel.text = "テスト"
+        
+        return tweetCell
     }
 
+    /*
+     * セルの数を設定する
+     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5	
+        return 5
     }
     
 
