@@ -21,9 +21,14 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         title = "トップページ"
         
+        // デリゲートなどを登録
         profileViewController.delegate = self
         timelineTableView.delegate     = self
         timelineTableView.dataSource   = self
+        // セルの高さが動的に変わるようにする
+        timelineTableView.estimatedRowHeight = 50
+        timelineTableView.rowHeight = UITableViewAutomaticDimension
+        
         profileViewController.startPanGestureRecognizing()
     }
 
@@ -32,10 +37,11 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-//    @objc private func sidemenuBarButtonTapped(sender: Any) {
-//        showSidemenu(animated: true)
-//    }
-    
+    /// サイドメニューを表示する
+    ///
+    /// - Parameters:
+    ///   - contentAvailability:
+    ///   - animated:
     private func showSidemenu(contentAvailability: Bool = true, animated: Bool) {
         if isShownSidemenu { return }
         
@@ -49,6 +55,9 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    /// サイドメニューを隠す
+    ///
+    /// - Parameter animated:
     private func hideSidemenu(animated: Bool) {
         if !isShownSidemenu { return }
         
@@ -59,24 +68,41 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
-    /*
-     * セルの中身を設定する
-     */
+    /// セルの中身を設定する
+    ///
+    /// - Parameters:
+    ///   - tableView: タイムラインのTableView
+    ///   - indexPath: セルの番号
+    /// - Returns: セル
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweetCell = timelineTableView.dequeueReusableCell(withIdentifier: "tweetCell") as! TweetTableViewCell
         tweetCell.iconImageView = nil
         tweetCell.nameLabel.text = "テスト"
+        tweetCell.tweetLabel.text = "あああああああああああああああああああああああああああああああ"
         
         return tweetCell
     }
-
-    /*
-     * セルの数を設定する
-     */
+    
+    /// セルの数を設定する
+    ///
+    /// - Parameters:
+    ///   - tableView: タイムラインのTableView
+    ///   - section: セクション
+    /// - Returns: セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
+    /// セルの高さの設定
+    ///
+    /// - Parameters:
+    ///   - tableView:
+    ///   - indexPath:
+    /// - Returns: セルの高さ
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 20 //セルの高さ
+        return UITableViewAutomaticDimension
+    }
 
     /*
     // MARK: - Navigation

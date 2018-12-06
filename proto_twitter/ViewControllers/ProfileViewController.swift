@@ -72,7 +72,9 @@ class ProfileViewController: UIViewController {
         view.addGestureRecognizer(tapGestureRecognizer)
     }
     
-
+    /// 背景がタップされた時の処理
+    ///
+    /// - Parameter sender: タップジェスチャー
     @objc private func backgroundTapped(sender: UITapGestureRecognizer) {
         hideContentView(animated: true) { (_) in
             self.willMove(toParentViewController: nil)
@@ -104,19 +106,25 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    /// パンジェスチャーを登録する
     func startPanGestureRecognizing() {
         if let parentViewController = self.delegate?.parentViewControllerForProfileViewController(self) {
+            // スクリーンの端からのパンジェスチャー
             screenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panGestureRecognizerHandled(panGestureRecognizer:)))
             screenEdgePanGestureRecognizer.edges = [.left]
             screenEdgePanGestureRecognizer.delegate = self
             parentViewController.view.addGestureRecognizer(screenEdgePanGestureRecognizer)
             
+            // 画面上のパンジェスチャー
             panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerHandled(panGestureRecognizer:)))
             panGestureRecognizer.delegate = self
             parentViewController.view.addGestureRecognizer(panGestureRecognizer)
         }
     }
     
+    /// パンジェスチャーの結果を判断する
+    ///
+    /// - Parameter panGestureRecognizer: パンジェスチャー
     @objc private func panGestureRecognizerHandled(panGestureRecognizer: UIPanGestureRecognizer) {
         guard let shouldPresent = self.delegate?.shouldPresentForProfileViewController(self), shouldPresent else {
             return
