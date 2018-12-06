@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Z4-1J-6K8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UcA-av-gbo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +64,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ログイン"/>
                                 <connections>
-                                    <segue destination="3wb-qp-3cu" kind="show" id="xhc-Nw-rfO"/>
+                                    <segue destination="UcA-av-gbo" kind="show" id="xhc-Nw-rfO"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="電話番号 or メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="17I-5v-7o3">
@@ -155,7 +156,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="アカウントを作成"/>
                                 <connections>
-                                    <segue destination="3wb-qp-3cu" kind="show" id="EuO-RG-meD"/>
+                                    <segue destination="UcA-av-gbo" kind="show" id="EuO-RG-meD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SMS認証コードを入力する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22e-iZ-W7c">
@@ -181,34 +182,80 @@
                     <view key="view" contentMode="scaleToFill" id="De7-46-r3B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c62-gR-ZnE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="547"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="タイムライン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrB-4N-hBL">
+                                        <rect key="frame" x="135" y="263" width="104" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.62571968166524894" green="0.90188159419027669" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="ioD-Yp-m86">
+                                <rect key="frame" x="168" y="619" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="trailing" secondItem="c62-gR-ZnE" secondAttribute="trailing" id="Tle-BE-u0N"/>
+                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="bottom" secondItem="c62-gR-ZnE" secondAttribute="bottom" id="aUO-mT-Gy3"/>
+                            <constraint firstItem="c62-gR-ZnE" firstAttribute="top" secondItem="1Cd-jc-pbc" secondAttribute="top" id="hXc-69-FOi"/>
+                            <constraint firstItem="c62-gR-ZnE" firstAttribute="leading" secondItem="1Cd-jc-pbc" secondAttribute="leading" id="vrs-Fi-Op5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1Cd-jc-pbc"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jCl-O2-6t3"/>
+                    <connections>
+                        <outlet property="TopPageScrollView" destination="c62-gR-ZnE" id="Y0T-pQ-jLO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRx-KB-FBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4812" y="258.62068965517244"/>
+            <point key="canvasLocation" x="5569" y="209"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="cXR-e7-Jzh">
+            <objects>
+                <viewController id="AKF-hn-4V0" customClass="ProfileViewController" customModule="proto_twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q31-rk-Rea">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.65444255062658774" green="1" blue="0.67198852809355569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="goE-5I-nfg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hcw-ap-uMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5569" y="930"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="YRW-Y0-no1">
+        <scene sceneID="D4O-Ll-x1w">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Z4-1J-6K8" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UcA-av-gbo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zlW-ZE-l9O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5v2-99-Ub4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NPk-6g-NAe"/>
+                        <segue destination="3wb-qp-3cu" kind="relationship" relationship="rootViewController" id="Amt-r8-P3k"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JIm-SS-aBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Omi-G1-2bd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951.20000000000005" y="248.72563718140933"/>
+            <point key="canvasLocation" x="4687" y="210"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EuO-RG-meD"/>
+        <segue reference="xhc-Nw-rfO"/>
     </inferredMetricsTieBreakers>
 </document>
