@@ -8,27 +8,19 @@
 
 import UIKit
 
-class TopPageViewController: UIViewController {
+class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let contentViewController = UINavigationController(rootViewController: UIViewController())
     var profileViewController = ProfileViewController()
     private var isShownSidemenu: Bool {
         return profileViewController.parent == self
     }
     
+    @IBOutlet weak var timelineTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "トップページ"
-
-        contentViewController.viewControllers[0].view.backgroundColor = .white
-//        contentViewController.viewControllers[0].navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sidemenu", style: .plain, target: self, action: #selector(sidemenuBarButtonTapped(sender:)))
-        addChildViewController(contentViewController)
-        view.addSubview(contentViewController.view)
-        contentViewController.didMove(toParentViewController: self)
         
-        // プロフィールViewControllerの再初期化
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         profileViewController.delegate = self
         profileViewController.startPanGestureRecognizing()
     }
@@ -47,8 +39,8 @@ class TopPageViewController: UIViewController {
         
         addChildViewController(profileViewController)
         profileViewController.view.autoresizingMask = .flexibleHeight
-        profileViewController.view.frame = contentViewController.view.bounds
-        view.insertSubview(profileViewController.view, aboveSubview: contentViewController.view)
+        profileViewController.view.frame = self.view.bounds
+        view.insertSubview(profileViewController.view, aboveSubview: self.view)
         profileViewController.didMove(toParentViewController: self)
         if contentAvailability {
             profileViewController.showContentView(animated: animated)
@@ -64,6 +56,16 @@ class TopPageViewController: UIViewController {
             self.profileViewController.view.removeFromSuperview()
         })
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "tweetCell")
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5	
+    }
+    
 
     /*
     // MARK: - Navigation

@@ -183,43 +183,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c62-gR-ZnE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="547"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="タイムライン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrB-4N-hBL">
-                                        <rect key="frame" x="135" y="263" width="104" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.62571968166524894" green="0.90188159419027669" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="ioD-Yp-m86">
-                                <rect key="frame" x="168" y="619" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </pageControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D9q-0P-bRj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="3yy-DH-Wpp">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3yy-DH-Wpp" id="Wwd-h2-kdc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFc-AM-QAV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="131" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="131" id="FmE-ll-qQ8"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="Name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s15-mE-OY2">
+                                                    <rect key="frame" x="148" y="6" width="78" height="31"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="s15-mE-OY2" firstAttribute="centerY" secondItem="Wwd-h2-kdc" secondAttribute="centerY" id="1hc-64-QGT"/>
+                                                <constraint firstItem="JFc-AM-QAV" firstAttribute="top" secondItem="Wwd-h2-kdc" secondAttribute="top" id="URk-cn-fNm"/>
+                                                <constraint firstItem="JFc-AM-QAV" firstAttribute="leading" secondItem="Wwd-h2-kdc" secondAttribute="leading" id="jw1-VX-8tk"/>
+                                                <constraint firstAttribute="bottom" secondItem="JFc-AM-QAV" secondAttribute="bottom" id="mHT-OZ-cSS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.60013886893974999" green="0.9855479503336555" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="trailing" secondItem="c62-gR-ZnE" secondAttribute="trailing" id="Tle-BE-u0N"/>
-                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="bottom" secondItem="c62-gR-ZnE" secondAttribute="bottom" id="aUO-mT-Gy3"/>
-                            <constraint firstItem="c62-gR-ZnE" firstAttribute="top" secondItem="1Cd-jc-pbc" secondAttribute="top" id="hXc-69-FOi"/>
-                            <constraint firstItem="c62-gR-ZnE" firstAttribute="leading" secondItem="1Cd-jc-pbc" secondAttribute="leading" id="vrs-Fi-Op5"/>
+                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="bottom" secondItem="D9q-0P-bRj" secondAttribute="bottom" id="Bhv-J0-XRe"/>
+                            <constraint firstItem="1Cd-jc-pbc" firstAttribute="trailing" secondItem="D9q-0P-bRj" secondAttribute="trailing" id="QJv-1n-XeY"/>
+                            <constraint firstItem="D9q-0P-bRj" firstAttribute="top" secondItem="1Cd-jc-pbc" secondAttribute="top" id="Rg3-Aa-qcs"/>
+                            <constraint firstItem="D9q-0P-bRj" firstAttribute="leading" secondItem="1Cd-jc-pbc" secondAttribute="leading" id="ZKM-Gb-wko"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Cd-jc-pbc"/>
                     </view>
                     <navigationItem key="navigationItem" id="jCl-O2-6t3"/>
                     <connections>
-                        <outlet property="TopPageScrollView" destination="c62-gR-ZnE" id="Y0T-pQ-jLO"/>
+                        <outlet property="timelineTableView" destination="D9q-0P-bRj" id="hqT-rr-McY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRx-KB-FBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5569" y="209"/>
+            <point key="canvasLocation" x="5568.8000000000002" y="208.24587706146929"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="cXR-e7-Jzh">

@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     private var contentMaxWidth: CGFloat {
         return view.bounds.width * 1.0
     }
+    
     private var contentRatio: CGFloat {
         get {
             return contentView.frame.maxX / contentMaxWidth
