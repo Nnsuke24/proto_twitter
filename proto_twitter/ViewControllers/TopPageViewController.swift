@@ -68,6 +68,12 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tweetCell = cell as? TweetTableViewCell else { return }
+        
+        tweetCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+    }
+    
     /// セルの中身を設定する
     ///
     /// - Parameters:
@@ -79,7 +85,6 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         tweetCell.iconImageView.image = UIImage(named: "cat.PNG")
         tweetCell.nameLabel.text  = "テスト"
         tweetCell.tweetLabel.text = "あああああああああああああああああああああああああああああああ"
-        
         
         return tweetCell
     }
@@ -116,6 +121,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     */
 }
 
+// プロフィールViewControllerを操作するためのエクステンション
 extension TopPageViewController: ProfileViewControllerDelegate {
     func parentViewControllerForProfileViewController(_ sidemenuViewController: ProfileViewController) -> UIViewController {
         return self
@@ -138,4 +144,23 @@ extension TopPageViewController: ProfileViewControllerDelegate {
         hideSidemenu(animated: true)
     }
 }
+
+// コレクションビューを操作するためのエクステンション
+extension TopPageViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    
+    // ツイート画像要素数
+    //TODO: 登録されている画像数による場合分けはここで行う
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    // ツイート画像
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        
+        let tweetImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TweetImageCollectionViewCell", for: indexPath) as! TweetImageCollectionViewCell
+        tweetImageCollectionViewCell.tweetImageView.image = UIImage(named: "cat.PNG")
+        return tweetImageCollectionViewCell
+    }
+}
+
 
