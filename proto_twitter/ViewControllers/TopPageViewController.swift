@@ -76,8 +76,8 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     /// - Returns: セル
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweetCell = timelineTableView.dequeueReusableCell(withIdentifier: "tweetCell") as! TweetTableViewCell
-        tweetCell.iconImageView = nil
-        tweetCell.nameLabel.text = "テスト"
+        tweetCell.iconImageView.image = UIImage(named: "cat.PNG")
+        tweetCell.nameLabel.text  = "テスト"
         tweetCell.tweetLabel.text = "あああああああああああああああああああああああああああああああ"
         
         
