@@ -45,5 +45,7 @@ class TweetTableViewCell: UITableViewCell {
         tweetImageCollectionView.reloadData()
         
     }
+    
+    
 
 }
