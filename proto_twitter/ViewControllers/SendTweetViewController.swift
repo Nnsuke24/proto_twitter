@@ -10,13 +10,46 @@ import UIKit
 
 class SendTweetViewController: UIViewController {
 
+    @IBOutlet weak var tweetTextField: UITextField!
+    @IBOutlet weak var selectPhotoButton: UIButton!
+    @IBOutlet weak var tweetPhotoimageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        tweetPhotoimageView.image = UIImage(named: "cat.PNG")
+        tweetPhotoimageView.contentMode = UIViewContentMode.scaleAspectFill
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // ナビゲーションバーの閉じるボタンを作成
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SendTweetViewController.close))
+        
+        // ナビゲーションバー右のボタンを設定
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿",
+                                                                 style: UIBarButtonItemStyle.plain,
+                                                                 target: self,
+                                                                 action:  #selector(SendTweetViewController.newTweet))
+    }
+    
+    // ナビゲーションバーの閉じるボタンが押された時の処理
+    @objc func close() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    // ツイートの投稿を押した時の処理
+    @objc func newTweet() {
+        //TODO: データ投稿処理を記述する
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func tapSelectPhotoButton(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -27,4 +60,20 @@ class SendTweetViewController: UIViewController {
     }
     */
 
+}
+
+// ImagePicker（画像取得）についてのエクステンション
+extension SendTweetViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // キャンセルボタンを押された時に呼ばれる
+    }
+    
+    // 写真が選択された時に呼ばれる
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // 写真取得
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        tweetPhotoimageView.image = image
+        // 写真を選ぶビューを引っ込める
+        self.dismiss(animated: true)
+    }
 }

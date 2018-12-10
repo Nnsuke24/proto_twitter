@@ -37,7 +37,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         
         // ナビゲーションバー右のボタンを設定
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopPageViewController.newTweet))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿作成", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopPageViewController.newTweet))
     }
     
     @objc func newTweet() {
