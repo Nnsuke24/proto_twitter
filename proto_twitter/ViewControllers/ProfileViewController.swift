@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
     }
     // 横スワイプで出てくる幅の比率
     private var contentMaxWidth: CGFloat {
-        return view.bounds.width * 1.0
+        return view.bounds.width * 0.8
     }
     
     private var contentRatio: CGFloat {
