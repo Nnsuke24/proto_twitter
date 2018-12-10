@@ -32,7 +32,18 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         profileViewController.startPanGestureRecognizing()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // ナビゲーションバー右のボタンを設定
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopPageViewController.newTweet))
+    }
+    
+    @objc func newTweet() {
+        self.performSegue(withIdentifier: "PresentNewTweetViewController", sender: self)
+    }   
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

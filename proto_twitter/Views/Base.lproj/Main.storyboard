@@ -283,11 +283,27 @@
                     <navigationItem key="navigationItem" id="jCl-O2-6t3"/>
                     <connections>
                         <outlet property="timelineTableView" destination="D9q-0P-bRj" id="hqT-rr-McY"/>
+                        <segue destination="NsA-x8-kw8" kind="presentation" identifier="PresentNewTweetViewController" id="Zr0-Jp-ZZ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRx-KB-FBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5568.8000000000002" y="208.24587706146929"/>
+        </scene>
+        <!--Send Tweet View Controller-->
+        <scene sceneID="COK-o1-8PJ">
+            <objects>
+                <viewController id="NsA-x8-kw8" customClass="SendTweetViewController" customModule="proto_twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u6N-IX-dzA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.45545240173942825" green="0.89854794996211729" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="4hy-xL-lIY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFv-PE-n6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6455" y="208"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="cXR-e7-Jzh">

@@ -11,6 +11,7 @@
 		5B1194C621BA4AE900CE7975 /* TweetImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1194C421BA4AE900CE7975 /* TweetImageCollectionViewCell.xib */; };
 		5B1194C821BA5D4F00CE7975 /* TweetImagePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1194C721BA5D4F00CE7975 /* TweetImagePresentationController.swift */; };
 		5B1194CA21BA715300CE7975 /* ImageModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1194C921BA715300CE7975 /* ImageModalViewController.swift */; };
+		5B1194CC21BE296400CE7975 /* SendTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1194CB21BE296400CE7975 /* SendTweetViewController.swift */; };
 		5B287F8221B8BD1D004AE12C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287F8121B8BD1D004AE12C /* ProfileViewController.swift */; };
 		5B287F8421B936D0004AE12C /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287F8321B936D0004AE12C /* TweetTableViewCell.swift */; };
 		5B287F8621B97CC0004AE12C /* cat.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5B287F8521B97CC0004AE12C /* cat.PNG */; };
@@ -54,6 +55,7 @@
 		5B1194C421BA4AE900CE7975 /* TweetImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		5B1194C721BA5D4F00CE7975 /* TweetImagePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetImagePresentationController.swift; sourceTree = "<group>"; };
 		5B1194C921BA715300CE7975 /* ImageModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModalViewController.swift; sourceTree = "<group>"; };
+		5B1194CB21BE296400CE7975 /* SendTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTweetViewController.swift; sourceTree = "<group>"; };
 		5B287F8121B8BD1D004AE12C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5B287F8321B936D0004AE12C /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		5B287F8521B97CC0004AE12C /* cat.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.PNG; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				5B287F8121B8BD1D004AE12C /* ProfileViewController.swift */,
 				5B1194C721BA5D4F00CE7975 /* TweetImagePresentationController.swift */,
 				5B1194C921BA715300CE7975 /* ImageModalViewController.swift */,
+				5B1194CB21BE296400CE7975 /* SendTweetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			files = (
 				5B9AADB621B7655200862D06 /* LoginViewController.swift in Sources */,
 				5B1194C821BA5D4F00CE7975 /* TweetImagePresentationController.swift in Sources */,
+				5B1194CC21BE296400CE7975 /* SendTweetViewController.swift in Sources */,
 				5B9AADBB21B7673400862D06 /* TopPageViewController.swift in Sources */,
 				5B9AADB921B766E600862D06 /* SMSAuthenticationViewController.swift in Sources */,
 				5B9AADB421B7653700862D06 /* SignUpViewController.swift in Sources */,
