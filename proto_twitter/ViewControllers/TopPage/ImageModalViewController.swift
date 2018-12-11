@@ -16,7 +16,6 @@ class ImageModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.green
         print(message ?? "値がセットされていない")
         
         let imageView = UIImageView(image: image)
@@ -25,6 +24,8 @@ class ImageModalViewController: UIViewController {
         let screenHeight:CGFloat = view.frame.size.height
         // 画像の中心を画面の中心に設定
         imageView.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+        // 画面に合うように画像の大きさを設定
+        imageView.contentMode = .scaleAspectFit
         // UIImageViewのインスタンスをビューに追加
         self.view.addSubview(imageView)
         

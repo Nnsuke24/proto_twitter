@@ -10,40 +10,47 @@ import UIKit
 
 class SendTweetViewController: UIViewController {
 
-    @IBOutlet weak var tweetTextField: UITextField!
+    @IBOutlet weak var tweetTextView: UITextView!
     @IBOutlet weak var selectPhotoButton: UIButton!
     @IBOutlet weak var tweetPhotoimageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tweetPhotoimageView.image = UIImage(named: "cat.PNG")
         tweetPhotoimageView.contentMode = UIViewContentMode.scaleAspectFill
+        // 入力がなければreturnキーを無効にする
+        tweetTextView.enablesReturnKeyAutomatically = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // ナビゲーションバーの閉じるボタンを作成
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SendTweetViewController.close))
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title : "閉じる",
+                                                                style : UIBarButtonItemStyle.plain,
+                                                                target: self,
+                                                                action: #selector(SendTweetViewController.close))
         // ナビゲーションバー右のボタンを設定
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿",
-                                                                 style: UIBarButtonItemStyle.plain,
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title : "投稿",
+                                                                 style : UIBarButtonItemStyle.plain,
                                                                  target: self,
                                                                  action:  #selector(SendTweetViewController.newTweet))
+        // テキストフィールドにフォーカスを合わせる
+        tweetTextView.becomeFirstResponder()
     }
     
-    // ナビゲーションバーの閉じるボタンが押された時の処理
+    // [navBar 左]閉じるボタンが押された時の処理
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
     }
 
-    // ツイートの投稿を押した時の処理
+    // [navBar 右]投稿ボタンを押した時の処理
     @objc func newTweet() {
         //TODO: データ投稿処理を記述する
         
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func tapSelectPhotoButton(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -66,6 +73,7 @@ class SendTweetViewController: UIViewController {
 extension SendTweetViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // キャンセルボタンを押された時に呼ばれる
+        self.dismiss(animated: true, completion: nil)
     }
     
     // 写真が選択された時に呼ばれる
@@ -75,5 +83,16 @@ extension SendTweetViewController: UIImagePickerControllerDelegate, UINavigation
         tweetPhotoimageView.image = image
         // 写真を選ぶビューを引っ込める
         self.dismiss(animated: true)
+    }
+}
+
+extension SendTweetViewController: UITextViewDelegate {
+    // UITextViewデリゲートメソッド（textに変更があった際に呼び出される。）
+    func textViewDidChange(_ textView: UITextView) {
+        let maxHeight = 200.0  // 入力フィールドの最大サイズ
+        if(textView.frame.size.height.native < maxHeight) {
+            let size:CGSize = tweetTextView.sizeThatFits(tweetTextView.frame.size)
+            tweetTextView.frame.size.height = size.height
+        }
     }
 }
