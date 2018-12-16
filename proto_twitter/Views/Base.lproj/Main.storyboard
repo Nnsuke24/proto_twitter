@@ -297,7 +297,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="iconImageView" destination="JFc-AM-QAV" id="Pgt-61-vDC"/>
-                                            <outlet property="tweetImageCollectionView" destination="yld-aY-Kp3" id="juF-EC-ubx"/>
+                                            <outlet property="tweetImageCollectionView" destination="yld-aY-Kp3" id="VRM-6N-tAe"/>
                                             <outlet property="tweetLabel" destination="5fa-Fv-92N" id="THI-Wv-iuN"/>
                                             <outlet property="userIdLabel" destination="Yvk-T6-gI9" id="KUI-xa-Msc"/>
                                             <outlet property="userNameLabel" destination="YTr-4u-SQg" id="oCd-H9-Ndi"/>
