@@ -16,6 +16,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBOutlet weak var timelineTableView: UITableView!
+    var catImage = UIImage(named: "cat.PNG")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,31 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         profileViewController.startPanGestureRecognizing()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // ナビゲーションバー右のボタンを設定
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿作成",
+                                                                 style: UIBarButtonItemStyle.plain,
+                                                                 target: self,
+                                                                 action:  #selector(TopPageViewController.newTweet))
+        // ナビゲーションバー左のボタンを設定
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "プロフィール",
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(sidemenuBarButtonTapped(sender:)))
+        
+    }
+    
+    @objc func newTweet() {
+        self.performSegue(withIdentifier: "PresentNewTweetViewController", sender: self)
+    }
+    
+    @objc private func sidemenuBarButtonTapped(sender: Any) {
+        showSidemenu(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,11 +70,13 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func showSidemenu(contentAvailability: Bool = true, animated: Bool) {
         if isShownSidemenu { return }
         
+        // プロフィールViewを作成し、childViewに追加する
         addChildViewController(profileViewController)
         profileViewController.view.autoresizingMask = .flexibleHeight
         profileViewController.view.frame = self.view.bounds
         view.insertSubview(profileViewController.view, aboveSubview: self.view)
         profileViewController.didMove(toParentViewController: self)
+        // コンテンツ表示
         if contentAvailability {
             profileViewController.showContentView(animated: animated)
         }
@@ -62,10 +89,17 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         if !isShownSidemenu { return }
         
         profileViewController.hideContentView(animated: animated, completion: { (_) in
+            // コンテンツを非表示させてから親ViewControllerから外す
             self.profileViewController.willMove(toParentViewController: nil)
             self.profileViewController.removeFromParentViewController()
             self.profileViewController.view.removeFromSuperview()
         })
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tweetCell = cell as? TweetTableViewCell else { return }
+        
+        tweetCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
     
     /// セルの中身を設定する
@@ -76,9 +110,10 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     /// - Returns: セル
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweetCell = timelineTableView.dequeueReusableCell(withIdentifier: "tweetCell") as! TweetTableViewCell
-        tweetCell.iconImageView = nil
-        tweetCell.nameLabel.text = "テスト"
-        tweetCell.tweetLabel.text = "あああああああああああああああああああああああああああああああ"
+        tweetCell.iconImageView.image = catImage
+        tweetCell.userNameLabel.text  = "ガッキー"
+        tweetCell.userIdLabel.text    = "@sample"
+        tweetCell.tweetLabel.text     = "あああああああああああああああああああああああああああああああ"
         
         return tweetCell
     }
@@ -100,7 +135,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     ///   - indexPath:
     /// - Returns: セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.estimatedRowHeight = 20 //セルの高さ
+        tableView.estimatedRowHeight = 20 //セルの高さ(初期設定)
         return UITableViewAutomaticDimension
     }
 
@@ -115,6 +150,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     */
 }
 
+// プロフィールViewControllerを操作するためのエクステンション
 extension TopPageViewController: ProfileViewControllerDelegate {
     func parentViewControllerForProfileViewController(_ sidemenuViewController: ProfileViewController) -> UIViewController {
         return self
@@ -138,3 +174,50 @@ extension TopPageViewController: ProfileViewControllerDelegate {
     }
 }
 
+// テーブルセル内のコレクションビューを操作するためのエクステンション
+extension TopPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UIViewControllerTransitioningDelegate{
+    
+    /// ツイート画像要素数
+    //TODO: 登録されている画像数による場合分けはここで行う
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    /// セル（ツイート画像）の設定
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        
+        let tweetImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TweetImageCollectionViewCell", for: indexPath) as! TweetImageCollectionViewCell
+        let imageView = tweetImageCollectionViewCell.tweetImageView!
+        
+        imageView.image = catImage
+        
+        // ジェスチャー追加：画像をタップした際にモーダルウィンドウを開く
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(TopPageViewController.imageViewTapped(_:)))
+        )
+        
+        return tweetImageCollectionViewCell
+    }
+    
+    /// 画像をタップした際にモーダルを表示する関数
+    @objc func imageViewTapped(_ sender: UITapGestureRecognizer) {
+        print("画像タップ")
+        let imageModalViewController = ImageModalViewController()
+        // モーダルスタイルをカスタマイズとする
+        imageModalViewController.modalPresentationStyle = .custom
+        imageModalViewController.transitioningDelegate = self
+        imageModalViewController.message = "こんにちは"
+        imageModalViewController.image = catImage
+            present(imageModalViewController, animated: true, completion: nil)
+        
+    }
+    
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController) -> UIPresentationController? {
+        return TweetImagePresentationController(presentedViewController: presented, presenting: presenting)
+    }
+
+}
