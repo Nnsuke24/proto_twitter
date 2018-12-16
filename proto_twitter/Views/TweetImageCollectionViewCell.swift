@@ -16,6 +16,4 @@ class TweetImageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    
-    
 }

@@ -18,8 +18,17 @@ protocol ProfileViewControllerDelegate: class {
 
 class ProfileViewController: UIViewController {
     
-    private let contentView = UIView(frame: .zero)
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    // UIView
+    private let contentView     = UIView(frame: .zero)
+    private var iconImageView:UIImageView?
+    private let userNameLabel   = UILabel(frame: .zero)
+    private let userIdLabel     = UILabel(frame: .zero)
+    private var followNumLabel  = UILabel(frame: .zero)
+    private let followLabel     = UILabel(frame: .zero)
+    private var followerNumLabel = UILabel(frame: .zero)
+    private let followerLabel   = UILabel(frame: .zero)
+    private let tableView       = UITableView(frame: .zero, style: .plain)
+    
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
     private var panGestureRecognizer: UIPanGestureRecognizer!
     weak var delegate: ProfileViewControllerDelegate?
@@ -30,9 +39,9 @@ class ProfileViewController: UIViewController {
     }
     // 横スワイプで出てくる幅の比率
     private var contentMaxWidth: CGFloat {
-        return view.bounds.width * 1.0
+        return view.bounds.width * 0.8
     }
-    
+    // 影や背景など見た目の調整
     private var contentRatio: CGFloat {
         get {
             return contentView.frame.maxX / contentMaxWidth
@@ -59,14 +68,85 @@ class ProfileViewController: UIViewController {
         contentView.autoresizingMask = .flexibleHeight
         view.addSubview(contentView)
         
-        tableView.frame = contentView.bounds
-        tableView.separatorInset = .zero
+        let x      = contentView.bounds.origin.x
+        let y      = contentView.bounds.origin.y
+        let width  = contentView.bounds.size.width
+        let height = contentView.bounds.size.height
+        let startPointOfX = x + 8
+        
+        // アイコン
+        let iconFrame = CGRect(x: startPointOfX,
+                               y: y + 70,
+                               width: 70,
+                               height: 70)
+        iconImageView = UIImageView(frame: iconFrame)
+        iconImageView?.image = UIImage(named: "cat.PNG")
+        iconImageView!.contentMode = UIViewContentMode.scaleAspectFill
+        iconImageView!.clipsToBounds = true
+        // ユーザー名
+        userNameLabel.frame = CGRect(x: startPointOfX ,
+                                     y: iconImageView!.frame.origin.y +
+                                        iconImageView!.frame.size.height,
+                                     width : 150,
+                                     height: 30)
+        userNameLabel.text  = "User Name"
+        // ユーザID
+        userIdLabel.frame = CGRect(x: startPointOfX,
+                                   y: userNameLabel.frame.origin.y +
+                                      userNameLabel.frame.size.height,
+                                   width: 150,
+                                   height: 30)
+        userIdLabel.text  = "User ID"
+        
+        let followStartPointOfY = userIdLabel.frame.origin.y +
+            userIdLabel.frame.size.height
+        // フォロー
+        followNumLabel.frame = CGRect(x: startPointOfX,
+                                      y: followStartPointOfY,
+                                      width: 30,
+                                      height: 30)
+        followNumLabel.text = String(0)
+        followNumLabel.textAlignment = .center
+        followLabel.frame = CGRect(x: startPointOfX + followNumLabel.frame.size.width,
+                                   y: followStartPointOfY ,
+                                   width: 90,
+                                   height: 30)
+        followLabel.text = "フォロー"
+        // フォロワー
+        followerNumLabel.frame = CGRect(x: startPointOfX + followNumLabel.frame.size.width +
+                                         followLabel.frame.size.width,
+                                      y: followStartPointOfY ,
+                                      width: 30,
+                                      height: 30)
+        followerNumLabel.text = String(0)
+        followerNumLabel.textAlignment = .center
+        followerLabel.frame = CGRect(x: startPointOfX + followNumLabel.frame.size.width +
+                                followLabel.frame.size.width + followerNumLabel.frame.size.width,
+                                   y: followStartPointOfY ,
+                                   width: 90,
+                                   height: 30)
+        followerLabel.text = "フォロワー"
+        // テーブルビュー
+        tableView.frame = CGRect(x: x,
+                                 y: followStartPointOfY + followNumLabel.frame.size.height,
+                                 width: width,
+                                 height: height - (followStartPointOfY + followNumLabel.frame.size.height))
+//        tableView.separatorInset = .zero
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Default")
-        contentView.addSubview(tableView)
+        // 子ビューとして追加
+        self.contentView.addSubview(iconImageView!)
+        self.contentView.addSubview(userNameLabel)
+        self.contentView.addSubview(userIdLabel)
+        self.contentView.addSubview(followNumLabel)
+        self.contentView.addSubview(followLabel)
+        self.contentView.addSubview(followerNumLabel)
+        self.contentView.addSubview(followerLabel)
+        self.contentView.addSubview(tableView)
         tableView.reloadData()
         
+        // メニュー以外の半透明の薄暗い部分をタップした時も非表示にする
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped(sender:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -83,6 +163,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // コンテンツを表示させる関数
     func showContentView(animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.3) {
@@ -93,10 +174,11 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // コンテンツビューを隠す
     func hideContentView(animated: Bool, completion: ((Bool) -> Swift.Void)?) {
         if animated {
             UIView.animate(withDuration: 0.2, animations: {
-                self.contentRatio = 0
+                self.contentRatio = 0 //contentRatio が 0 になるようにしている。
             }, completion: { (finished) in
                 completion?(finished)
             })
@@ -130,6 +212,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
+        // 既に表示されている際の右方向のPANジェスチャーは無視
         let translation = panGestureRecognizer.translation(in: view)
         if translation.x > 0 && contentRatio == 1.0 {
             return
@@ -186,6 +269,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// テーブルViewへのタップはジェスチャーを無効にしている
 extension ProfileViewController: UIGestureRecognizerDelegate {
     internal func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let location = gestureRecognizer.location(in: tableView)
@@ -194,15 +278,4 @@ extension ProfileViewController: UIGestureRecognizerDelegate {
         }
         return true
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

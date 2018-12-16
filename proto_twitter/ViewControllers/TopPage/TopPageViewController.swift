@@ -32,7 +32,31 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         profileViewController.startPanGestureRecognizing()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // ナビゲーションバー右のボタンを設定
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投稿作成",
+                                                                 style: UIBarButtonItemStyle.plain,
+                                                                 target: self,
+                                                                 action:  #selector(TopPageViewController.newTweet))
+        // ナビゲーションバー左のボタンを設定
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "プロフィール",
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(sidemenuBarButtonTapped(sender:)))
+        
+    }
+    
+    @objc func newTweet() {
+        self.performSegue(withIdentifier: "PresentNewTweetViewController", sender: self)
+    }
+    
+    @objc private func sidemenuBarButtonTapped(sender: Any) {
+        showSidemenu(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,11 +70,13 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func showSidemenu(contentAvailability: Bool = true, animated: Bool) {
         if isShownSidemenu { return }
         
+        // プロフィールViewを作成し、childViewに追加する
         addChildViewController(profileViewController)
         profileViewController.view.autoresizingMask = .flexibleHeight
         profileViewController.view.frame = self.view.bounds
         view.insertSubview(profileViewController.view, aboveSubview: self.view)
         profileViewController.didMove(toParentViewController: self)
+        // コンテンツ表示
         if contentAvailability {
             profileViewController.showContentView(animated: animated)
         }
@@ -63,6 +89,7 @@ class TopPageViewController: UIViewController, UITableViewDelegate, UITableViewD
         if !isShownSidemenu { return }
         
         profileViewController.hideContentView(animated: animated, completion: { (_) in
+            // コンテンツを非表示させてから親ViewControllerから外す
             self.profileViewController.willMove(toParentViewController: nil)
             self.profileViewController.removeFromParentViewController()
             self.profileViewController.view.removeFromSuperview()
